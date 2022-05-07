@@ -1,31 +1,35 @@
 AFRAME.registerComponent("play-on-click", {
- //Add code here
-  schema:{isPlaying:{type:'boolean', default:false}},
-  init: function(){
-    this.videoEL = this.el.getAttribute('material').src
-    this.onClick = this.onClick.bind(this)
+  schema: {
+    isPlaying: { type: "boolean", default: false }
   },
-  play: function(){
-    window.addEventListener('click',this.onClick)
+
+  init: function() {
+    this.videoEl = this.el.getAttribute("material").src;
+    this.onClick = this.onClick.bind(this);    
   },
-  onClick: function(evt){
-    if(!this.videoEL){
-        return
+
+  play: function() {
+    window.addEventListener("click", this.onClick);
+  },
+  onClick: function(evt) {
+    if (!this.videoEl) {
+      return;
     }
-    var isPlaying = this.el.getAttribute('play-on-click').isPlaying
-    this.el.object3D.visible = true
-    if(!isPlaying){
-        this.el.setAttribute('play-on-click',{
-            isPlaying:true,
-        })
-        this.videoEL.play()
-    }
-    else{
-        this.el.setAttribute('play-on-click',{
-            isPlaying:false
-        })
-        this.videoEL.pause()
+
+    var isPlaying = this.el.getAttribute("play-on-click").isPlaying;
+
+    this.el.object3D.visible = true;
+
+    if (!isPlaying) {
+      this.el.setAttribute("play-on-click", {
+        isPlaying: true
+      });
+      this.videoEl.play();
+    } else {
+      this.el.setAttribute("play-on-click", {
+        isPlaying: false
+      });
+      this.videoEl.pause();
     }
   }
-
 });
